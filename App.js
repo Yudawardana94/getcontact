@@ -1,12 +1,18 @@
-import React from 'react'
-import { StyleSheet, Text, View } from 'react-native'
+import 'react-native-gesture-handler';
+import React from 'react';
+import thunk from 'redux-thunk';
+import {createStore, applyMiddleware} from 'redux';
+import {Provider as StoreProvider} from 'react-redux';
 
-const App = () => {
+import Navigation from './src/navigations'
+import reducer from './src/stores/reducers';
+
+const store = createStore(reducer, applyMiddleware(thunk));
+
+export default () => {
   return (
-    <View >
-      <Text>Application: getcontact</Text>
-    </View>
-  )
-}
-
-export default App
+    <StoreProvider store={store}>
+      <Navigation />
+    </StoreProvider>
+  );
+};
