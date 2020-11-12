@@ -9,7 +9,7 @@ export function getAllData() {
         try {
             let {data, status} = await axiosInstance.get('/contact')
             if(status == 200) {
-                console.log(data.data, data.message,'[ini message]')
+
                 res({data: data.data, message: data.message})
             }
         } catch (error) {
@@ -29,10 +29,10 @@ export function getOneData(id) {
         }
     })
 }
-export function editData(id) {
+export function editData(id,inputData) {
     return new Promise(async (res,rej) => {
         try {
-            let {data, status} = await axiosInstance.put(`/contact/${id}`)
+            let {data, status} = await axiosInstance.put(`/contact/${id}`, inputData)
             if(status == 201) {
                 res({data: data.data, message: data.message})
             }
@@ -45,6 +45,7 @@ export function deleteData(id) {
     return new Promise(async (res,rej) => {
         try {
             let {data, status} = await axiosInstance.delete(`/contact/${id}`)
+
             if(status == 202) {
                 res({message: data.message})
             }
@@ -53,10 +54,10 @@ export function deleteData(id) {
         }
     })
 }
-export function addData(id, inputData) {
+export function addData(inputData) {
     return new Promise(async (res,rej) => {
         try {
-            let {data, status} = await axiosInstance.post(`/contact/${id}`, inputData)
+            let {data, status} = await axiosInstance.post(`/contact`, inputData)
             if(status == 201) {
                 res({message: data.message})
             }
@@ -65,3 +66,4 @@ export function addData(id, inputData) {
         }
     })
 }
+

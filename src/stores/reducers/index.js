@@ -3,14 +3,16 @@ import {
     SET_DETAIL_CONTACT,
     UPDATE_CONTACT,
     CLEAR_DETAIL,
-    RESPONSE_CHANGE
+    RESPONSE_CHANGE,
+    SEARCH_CONTACT
 } from '../types'
 
 const initialState = {
     title: 'getcontact',
     allContact: null,
     detailContact: null,
-    responseMessage: null
+    responseMessage: null,
+    searchValue: null
 }
 
 export default (state = initialState, {type, payload}) => {
@@ -38,6 +40,11 @@ export default (state = initialState, {type, payload}) => {
                 ...state,
                 responseMessage: payload
             }
+        case SEARCH_CONTACT: 
+        return {
+            ...state,
+            searchValue: payload
+        }
         default:
             return state
     }
